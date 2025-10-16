@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #9b5d5d, #ff0000);
+    transition: background-image 1s ease-in-out;
+      font-family: "Roboto", sans-serif;
+}
+
+.ball {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.3;
+    pointer-events: none;
+    transition: background-color 1s ease-in-out;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container{
+    position: absolute;
+    width:1000px;
+    height:600px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-image: radial-gradient(#ffffff, #057418ff);
+    overflow: hidden;
+    .container{
+    transition: background-image 1s ease-in-out;
+      transform-style: preserve-3d;
+}
+   }
+
+
+.header{
+    position: absolute;
+    top:0;
+    width:100%;
+    z-index: 1111;
+    padding:10px;
+}
+.header .logo{
+    width:40px;
+    height:40px;
+    display: inline-block;
+}
+.header ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+    transform: translate(0,-14px);
+}
+.header li{
+    display: inline-block;
+    color:#ffffff;
+    font-size: 13px;
+    margin-left: 20px;
+}
+.directional{
+    position: absolute;
+    bottom:1px;
+    width:100%;
+    text-align: center;
+    z-index: 3;
+}
+.directional button{
+    width:50px;
+    height:50px;
+    color:#fff;
+    background-color: transparent;
+    border:none;
+    opacity: 0.2;
+}
+.directional button:hover{
+    opacity: 1;
+}
+#slide{
+    position: relative;
+    width:100%;
+    height:100%;
+}
+#slide .item{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 1;
+}
+#slide .item .image{
+    position: absolute;
+    top:13%;
+    left:13%;
+    width:80%;
+    height:75%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    opacity: 0;
+    transform: scale(3);
+    transition: 1.5s;
+}
+#slide .item .image img{
+    width:65%;
+    transition: 0.5s;
+}
+#slide .item .image::before{
+    position: absolute;
+    bottom:-30px;
+    height:60px;
+    width:60%;
+    background-color: #383535;
+    content:'';
+    z-index: -1;
+    border-radius: 50%;
+    filter:blur(30px)
+}
+#slide .item .image img:hover{
+    transform: scale(1.1);
+}
+
+.content .left{
+    position: absolute;
+    left:40px;
+    top:15%;
+    display: none;
+    color: #ffffff;
+}
+.content .left h1{
+    font-size: xxx-large;
+    font-weight: 500;
+    margin-bottom:10px;
+}
+.content .left .des{
+    font-size: small;
+    font-weight: 100;
+    opacity: 0.6;
+    margin-bottom:20px;
+}
+.content .left button{
+    font-size: small;
+    background-color: transparent;
+    border:none;
+    color:#fff;
+}
+.content .left button i:nth-child(1){
+    margin-left: 10px;
+}
+.content .right{
+    position: absolute;
+    right:40px;
+    top:15%;
+    display: none
+
+}
+.content .right h2{
+    font-size: large;
+    font-weight: 500;
+    margin-bottom:10px;
+    color: #ffffff;
+}
+.content .right ul{
+    padding: 0;
+    margin:0;
+    list-style: none;
+}
+.content .right li{
+    font-size: small;
+    position: relative;
+    margin-top: 20px;
+    color: #ffffff;
+}
+.content .right li::before{
+    position: absolute;
+    left:-40px;
+    top:50%;
+    transform: translate(0,-50%);
+    width:8px;
+    height: 8px;
+    background-color: #ffffff;
+    content:'';
+    border-radius: 50%;
+    box-shadow:  0 0 10px #ffffff;
+}
+.content .right li p:nth-child(1){
+    font-weight: 500;
+    padding:0;
+    margin:0;
+}
+.content .right li p:nth-child(2){
+    font-weight: 100;
+    padding:0;
+    margin:0;
+    font-size: x-small;
+}
+#slide .item:nth-child(1) .image{
+    opacity: 0;
+    transform: scale(0) translate(-100px);
+}
+#slide .item:nth-child(2) .image{
+    opacity: 1;
+    transform: scale(1);
+}
+#slide .item:nth-child(2){
+    z-index: 3;
+}
+@keyframes contentOut {
+    from{
+        opacity: 1;
+    transform: translate(0,0);
+    }to{
+        opacity: 0;
+        transform: translate(0,-100%);
+        filter:blur(113px)
+    }
+}
+@keyframes contentIn {
+    from{
+        opacity: 0;
+    transform: translate(0,100%);
+    filter:blur(33px)
+    }to{
+        opacity: 1;
+        transform: translate(0,0);
+    }
+}
+#slide .item:nth-child(1) .left,
+#slide .item:nth-child(1) .right,
+#slide .item:nth-child(2) .left,
+#slide .item:nth-child(2) .right{
+    display: block;
+}
+#slide .item:nth-child(1) .left,
+#slide .item:nth-child(1) .right{
+    animation:contentOut 1s ease-in-out 1 forwards
+}
+#slide .item:nth-child(2) .left,
+#slide .item:nth-child(2) .right{
+    animation:contentIn 1s ease-in-out 1 forwards
+}
+/* ==================== HOODIE SECTIONS ==================== */
+
+.section {
+  display: none; /* مخفيين فالأول */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  color: #fff;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* تنسيق المحتوى داخل section */
+.hoodie-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 1100px;
+  gap: 40px;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  animation: popUp 0.6s ease forwards;
+}
+
+/* الجهة ديال المعلومات */
+.hoodie-content .info {
+  flex: 1;
+}
+
+.hoodie-content .info h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hoodie-content .info p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.hoodie-content .price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.hoodie-content .sizes span {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  margin: 6px;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hoodie-content .sizes span:hover {
+  background: white;
+  color: black;
+}
+
+/* زر الرجوع */
+.back-btn {
+  margin-top: 25px;
+  padding: 10px 25px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* الصورة */
+.hoodie-content .image {
+  flex: 1;
+  text-align: right;
+  width: 50%;
+}
+
+.hoodie-content .image img {
+  width: 400px;
+  transform: scale(0.9);
+  opacity: 0;
+  animation: showImage 1s ease forwards;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes showImage {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hoodie-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hoodie-content {
+  position: relative;
+  z-index: 2;
+}
+/* ==================== CATEGORY SECTION ==================== */
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cat-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 25px 15px;
+  text-align: center;
+  transition: 0.4s;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.cat-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  transition: 0.4s ease;
+    filter: none; /* إرجاع الألوان الأصلية */
+ 
+}
+
+.cat-card p {
+  margin-top: 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cat-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cat-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+
+/* للشاشات الكبيرة */
+@media screen and (min-width: 1200px) {
+  .categories {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* للتابلت والأجهزة متوسطة الحجم */
+@media screen and (max-width: 1024px) {
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px 20px;
+  }
+  
+  .cat-card img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* للهواتف المحمولة */
+@media screen and (max-width: 768px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 25px 15px;
+    margin-top: 20px;
+  }
+  
+  .cat-card {
+    padding: 20px 10px;
+  }
+  
+  .cat-card img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .cat-card p {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+}
+
+/* للهواتف الصغيرة جداً */
+@media screen and (max-width: 480px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 20px 10px;
+  }
+  
+  .cat-card {
+    padding: 15px 8px;
+    border-radius: 12px;
+  }
+  
+  .cat-card img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .cat-card p {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+}
+
+/* دعم للمتصفحات التي لا تدعم backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+  .categories {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .cat-card {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+
+/* small screens (phones) */
+@media (max-width: 900px) {
+  .container {
+    width: 90vw;
+    height: 60vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .content .left{
+    position: absolute;
+    left: 10px;
+  }
+  .content .left h1{
+    font-size: xxx-large;
+    font-weight: 500;
+    margin-bottom:10px;
+
+}
+.content .left .des{
+    font-size: small;
+    font-weight: 50;
+    opacity: 0.6;
+    margin-bottom:20px;
+}
+.content .right{
+    position: absolute;
+    right:10px;
+    top:14%;
+    display: none
+}
+
+  .header ul { transform: translate(0, -8px); font-size: 12px; }
+  .header .logo { width: 36px; height:36px; }
+
+  /* make touch hit area larger for prev/next */
+  .directional button {
+    width: 64px;
+    height: 64px;
+    font-size: 22px;
+    opacity: 0.9;
+  }
+
+  /* images responsive inside items */
+  #slide .item .image img {
+    width: 80%; /* smaller on phones */
+    max-width: 300px;
+  }
+
+  /* hide some heavy UI if needed */
+  .content .right { display: none; } /* optional: hide right panel to save space */
+}
+
+/* very small phones */
+@media (max-width: 420px) {
+  .container {
+    height: 68vh;
+  }
+  .directional button {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+  }
+  .content .left h1 { font-size: 1rem; }
+  .content .left .des { font-size: 0.85rem; }
+}
+/* ==================== RESPONSIVE HOODIE SECTIONS ==================== */
+
+/* 📱 الهاتف الصغير (حتى 480px) */
+@media screen and (max-width: 480px) {
+
+  .section {
+    position: absolute;
+    padding: 30px 10px;
+    align-items: center;
+    left: -9.1px;
+  }
+
+  .section .hoodie-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 25px;
+  }
+
+  .hoodie-content .image img {
+    width: 240px;
+    height: auto;
+    max-width: 100%;
+    border-radius: 15px;
+  }
+
+  .hoodie-content .info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .hoodie-content .info p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .hoodie-content .price {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  .hoodie-content .sizes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .hoodie-content .sizes span {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .hoodie-content button,
+  .back-btn {
+    font-size: 0.9rem;
+    padding: 10px 22px;
+    margin-top: 15px;
+  }
+}
+
